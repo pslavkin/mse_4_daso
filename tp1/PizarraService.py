@@ -29,7 +29,7 @@ class View:
     def __init__(self,model):
         self.model = model
 
-    def show(self):
+    def print(self):
         os.system('clear')
         print("MONEDA\t\tCOMPRA\t\tVENTA")
         for m in self.model.prices:
@@ -40,7 +40,7 @@ class Parser:
     @staticmethod
     def parseData(data):
         return json.loads(str(data,"utf-8"))
-       
+
 
 class Main:
 
@@ -57,8 +57,8 @@ class Main:
             exit(1)
 
         self.model = Model()
-        self.view = View(self.model)
-        
+        self.view  = View(self.model)
+
 
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.bind(("localhost", port))
@@ -67,7 +67,7 @@ class Main:
             (data, addr) = s.recvfrom(128*1024)
             data = Parser.parseData(data)
             self.model.updateData(data)
-            self.view.show()
+            self.view.print()
             s.sendto(bytearray("OK","utf-8"),addr)
 
 m = Main()
