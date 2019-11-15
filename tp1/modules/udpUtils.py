@@ -6,20 +6,21 @@ class comUdpClass:
         self.port = port
         self.ip   = ip
         self.buff = 1024
+        self.udpSock=0
         pass
 
     def sendUdpMsg(self,msg):
-        udpSock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM) # UDP socket
-        debugClass.print("enviando datos por udp ip={} puerto={} mensaje={}".format(self.ip,self.port,msg))
-        udpSock.sendto(msg.encode(),(self.ip, self.port))                      # envia el mensaje
-        udpSock.settimeout(1)
-        return udpSock.recv(self.buff)                                         # espera una respuesta
+        self.udpSock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM) # UDP socket
+        debugClass.v2("enviando datos por udp ip={} puerto={} mensaje={}".format(self.ip,self.port,msg))
+        self.udpSock.settimeout(1)
+        self.udpSock.sendto(msg.encode(),(self.ip, self.port))                      # envia el mensaje
+        return self.udpSock.recv(self.buff)                                         # espera una respuesta
 
     def loopSendRcv(self,msg):
         try:
             return self.sendUdpMsg(msg)
         except socket.timeout:
-            print("error de timeout")
-        finally:
-            print("cierro socket udp")
+            debugClass.v1("udp: timeout esperando respuesta del server")
+            self.udpSock.close()
+            return b'tout'
 

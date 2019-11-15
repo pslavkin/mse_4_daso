@@ -10,11 +10,9 @@ class Moneda:
         self.value1 = value1
         self.value2 = value2
 
-
 class Model:
     def __init__(self):
         self.prices = []
-
 
     def updateData(self,data):
         print("update data")
@@ -52,6 +50,7 @@ class Main:
         port = 10000
         try:
             port = int(sys.argv[1])
+            print("Puerto elegido= {}".format(port))
         except:
             print("Puerto incorrecto")
             exit(1)
