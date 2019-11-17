@@ -28,4 +28,4 @@ class Main:
         debugClass.vx(2,"programa principal terminado id={}".format(id(self)))                   # debug de fin de programa
 
 debugClass.verbose = 2                                                                           # nivel de debug para la muestra de mensajes
-Main(ip="127.0.0.1",startPort=10000,tout=1,config="config.txt").main()                           # instancio la clase Main y lanzo el miembro main().. la instancia no la guardo porque no la necesito
+Main(ip="127.0.0.1",startPort=10000,tout=1,config="config/config.txt").main()                           # instancio la clase Main y lanzo el miembro main().. la instancia no la guardo porque no la necesito
