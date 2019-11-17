@@ -4,7 +4,7 @@
     date=$(stat -c %y "$1")
     while sleep 0.2; do date2=$(stat -c %y "$1")
       if [[ $date2 != $date ]]; then
-         p3.sh $1
+         p3.sh $1 $2 $3 $4 $5
          break;
       fi
       # possibly exit [status] instead of break

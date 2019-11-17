@@ -29,9 +29,9 @@ class View:
 
     def print(self):
         os.system('clear')
-        print("MONEDA\t\tCOMPRA\t\tVENTA")
+        print("MONEDA\t\t\tCOMPRA\t\t\tVENTA")
         for m in self.model.prices:
-            print(m.name+":\t\t"+str(m.value1)+"\t\t"+str(m.value2))
+            print(m.name+":\t\t\t"+str(m.value1)+"\t\t\t"+str(m.value2))
 
 class Parser:
 
